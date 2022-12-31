@@ -1,0 +1,56 @@
+{% extends 'home.html' %} {% load static %}
+ {% load crispy_forms_tags %}{% block title %} courses {% endblock %} 
+ {% block content %}
+
+<section class="section contact" data-section="section6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Submit Your Assignment</h2>
+                </div>
+            </div>
+            <!-- <div class="col-md-6"> -->
+
+                <!-- Do you need a working HTML contact-form script?
+                
+                Please visit https://templatemo.com/contact page -->
+
+                <form id="contact" action="{%url 'assignment_submit' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row" style="align-items: center;">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="aname" type="text" class="form-control" id="name" placeholder="Your Name" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <input name="ans" type="file" class="form-control"  placeholder="" required="">
+                            </fieldset>
+                        </div>
+                        
+                       
+                 
+                        <div class="col-md-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="button">Upload Assignment Answer</button>
+                            </fieldset>
+                            {% if msg %}
+                            <h2 style="color: white;"></h2>{{msg}}{% endif %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="col-md-6">
+                <div id="map">
+                    <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="422px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

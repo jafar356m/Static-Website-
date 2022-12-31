@@ -1,0 +1,67 @@
+{% extends 'home.html' %} {% block content %} {%load static%}
+<section class="section courses" data-section="section4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Student Assignment Mark</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style media="screen">
+        a:link {
+            text-decoration: none;
+        }
+        
+        h6 {
+            text-align: center;
+        }
+        
+        .row {
+            margin: 100px;
+        }
+    </style>
+</head>
+<br><br>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h6 class="panel-title">Add Marks</h6>
+        </div>
+        <table class="table table-hover" id="dev-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Assignment Name</th>
+                    <th>Assignment Answer</th>
+                    <th>Date Created</th>
+                    <th>Mark</th>
+                    <th>Add Mark</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            {% for t in mark %}
+            <tr>
+
+                <td> {{t.user}}</td>
+                <td>{{t.assignment}}</td>
+                <td><a href="{{t.assignment_ans.url}}">Assignment Answer</a></td>
+                <td>{{t.date_created}}</td>
+                <td>{{t.assignment_mark}}</td>
+                <td><a class="btn btn-danger btn-xs" href="{% url 'assignmentupdate' t.id  %}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                <td><a href="{% url 'assignmentdelete' t.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<br><br><br><br><br><br> {% endblock content %}

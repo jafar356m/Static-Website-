@@ -1,0 +1,46 @@
+{% extends 'home.html' %} {% load static %} {% block title %} courses {% endblock %} {% block content %}
+
+<section class="section courses" data-section="section4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <br><br><br>
+                    <h2>Assignment</h2>
+                    {% if user.user_profile.user_type == 'teacher' or user.is_superuser %}
+                    <h2><a href="{% url 'assignment' %}">Upload Assignment Question</a></h2>
+                
+                    <h2><a href="{% url 'assignment_mark'%}">Add Assignment Mark</a></h2>
+                    
+                    {% endif %}
+                    {% if user.user_profile.user_type == 'student' %}
+                    <h2><a href="{% url 'assignment_submit' %}">Upload Assignment Answer</a></h2>
+                    {% endif %}
+                    <br>
+                </div>
+            </div>
+            {% for a in assignment %}
+            <div class="item">
+
+                <div class="down-content">
+                    <h4><a href="">Course: {{a.course}}</a></h4>
+                    <h4><a href="">Name: {{a.title}}</a></h4>
+                    <h4><a href="">Last Date: {{a.last_date_submit}}</a></h4>
+                    <h4><a href="">Mark: {{a.assignment_mark}}</a></h4>
+
+
+                    <a href="{{a.assignment.question.url}}" class="btn btn-outline-primary" target="_blank" download>Question</a>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+
+
